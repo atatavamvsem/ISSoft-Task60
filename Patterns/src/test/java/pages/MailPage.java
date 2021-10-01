@@ -4,8 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MailPage extends BasePage {
+    private static WebDriverWait wait;
 
     @FindBy(xpath = "//a[contains(text(),'Light version')]")
     WebElement switchToLightVersion;
@@ -19,11 +22,12 @@ public class MailPage extends BasePage {
 
     public MailPage(WebDriver driver) {
         super(driver);
+        wait = new WebDriverWait(driver, 30);
         PageFactory.initElements(driver, this);
     }
 
     public void switchToLightVersionClick() {
-        switchToLightVersion.click();
+        wait.until(ExpectedConditions.elementToBeClickable(switchToLightVersion)).click();
     }
 
     public void logoutButtonClick() {

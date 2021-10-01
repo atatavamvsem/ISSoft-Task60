@@ -33,8 +33,7 @@ public class LoginPage extends BasePage {
     }
 
     public void sendPassword(String password) {
-        wait.until(ExpectedConditions.elementToBeClickable(passwordInput));
-        passwordInput.sendKeys(password);
+        wait.until(ExpectedConditions.elementToBeClickable(passwordInput)).sendKeys(password);
     }
 
     public void loginButtonClick() {
