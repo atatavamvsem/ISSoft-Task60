@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
 
-public class ResourcesProperties {
+public class ResourceProperties {
     private static FileInputStream fileConfigInputStream;
     private static Properties CONF_PROPERTIES;
 
