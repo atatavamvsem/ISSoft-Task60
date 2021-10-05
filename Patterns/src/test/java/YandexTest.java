@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.*;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
 import pages.MailPage;
 import pages.StartPage;
@@ -17,7 +16,7 @@ public class YandexTest {
 
     @BeforeEach
     public void setUp() {
-        driver = new ChromeDriver();
+        driver = WebDriverManager.getInstance();
         driver.manage().window().maximize();
         driver.get("https://mail.yandex.com/");
     }
@@ -26,48 +25,30 @@ public class YandexTest {
     public void loginTest() {
         startPage = new StartPage(driver);
 
-        startPage.inputButtonClick();
+        loginPage = startPage.enterButtonClick();
 
-        loginPage = new LoginPage(driver);
+        mailPage = loginPage.loginUser(ResourceProperties.getCredProperty("login"), ResourceProperties.getCredProperty("password"));
 
-        loginPage.sendLogin(ResourcesProperties.getCredProperty("login"));
-        loginPage.loginButtonClick();
-
-        loginPage.sendPassword(ResourcesProperties.getCredProperty("password"));
-        loginPage.loginSecondButtonClick();
-
-        mailPage = new MailPage(driver);
-
-        Assertions.assertEquals(mailPage.getTextElement(mailPage.userAccount),
-                ResourcesProperties.getCredProperty("login"), "Login failed");
+        Assertions.assertEquals(mailPage.getAccountName(),
+                ResourceProperties.getCredProperty("login"), "Login failed");
     }
 
     @Test
     public void logoutTest() {
         startPage = new StartPage(driver);
 
-        startPage.inputButtonClick();
+        loginPage = startPage.enterButtonClick();
 
-        loginPage = new LoginPage(driver);
+        mailPage = loginPage.loginUser(ResourceProperties.getCredProperty("login"), ResourceProperties.getCredProperty("password"));
 
-        loginPage.sendLogin(ResourcesProperties.getCredProperty("login"));
-        loginPage.loginButtonClick();
+        yandexPage = mailPage.logoutUser();
 
-        loginPage.sendPassword(ResourcesProperties.getCredProperty("password"));
-        loginPage.loginSecondButtonClick();
-
-        mailPage = new MailPage(driver);
-
-        mailPage.switchToLightVersionClick();
-        mailPage.logoutButtonClick();
-
-        yandexPage = new YandexPage(driver);
-
-        Assertions.assertTrue(yandexPage.checkIfElementDisplayed(yandexPage.newLoginItem), "Logout failed");
+        Assertions.assertTrue(yandexPage.isLoginItemDisplayed(), "Logout failed");
     }
 
     @AfterEach
     public void closeUp() {
         driver.quit();
+        WebDriverManager.delDriver();
     }
 }

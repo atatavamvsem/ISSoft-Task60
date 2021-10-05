@@ -8,11 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 public class YandexPage extends BasePage {
 
     @FindBy(xpath = "//div[@class='desk-notif-card__login-new-items']")
-    public
-    WebElement newLoginItem;
+    private static WebElement newLoginItem;
 
     public YandexPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+    }
+
+    public boolean isLoginItemDisplayed() {
+        return isElementDisplayed(newLoginItem);
     }
 }

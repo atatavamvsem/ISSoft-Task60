@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
-    public WebDriver driver;
+    private static WebDriver driver;
     private static WebDriverWait wait;
 
     public BasePage(WebDriver driver) {
@@ -14,11 +14,11 @@ public class BasePage {
         wait = new WebDriverWait(driver, 30);
     }
 
-    public boolean checkIfElementDisplayed(WebElement element) {
+    protected boolean isElementDisplayed(WebElement element) {
         return element.isDisplayed();
     }
 
-    public String getTextElement(WebElement element) {
+    protected String getTextElement(WebElement element) {
         return wait.until(ExpectedConditions.elementToBeClickable(element)).getText();
     }
 }
