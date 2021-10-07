@@ -1,14 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage {
-    private static WebDriver driver;
-    private static WebDriverWait wait;
-
     private static final By LOGIN_INPUT = By.xpath("//input[@id='passp-field-login']");
 
     private static final By LOGIN_BUTTON = By.xpath("//button[@id='passp:sign-in']");
@@ -17,10 +13,8 @@ public class LoginPage extends BasePage {
 
     private static final By LOGIN_SECOND_BUTTON = By.xpath("//button[@id='passp:sign-in']");
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
-        wait = new WebDriverWait(driver, 30);
+    public LoginPage() {
+        super();
     }
 
     //I split the logic for the login because we might need separate methods
@@ -29,16 +23,16 @@ public class LoginPage extends BasePage {
         sendLogin(login);
         sendPassword(password);
 
-        return new MailPage(driver);
+        return new MailPage();
     }
 
     private void sendLogin(String login){
-        driver.findElement(LOGIN_INPUT).sendKeys(login);
-        driver.findElement(LOGIN_BUTTON).click();
+        super.driver.findElement(LOGIN_INPUT).sendKeys(login);
+        super.driver.findElement(LOGIN_BUTTON).click();
     }
 
     private void sendPassword(String password){
-        wait.until(ExpectedConditions.elementToBeClickable(PASSWORD_INPUT)).sendKeys(password);
-        driver.findElement(LOGIN_SECOND_BUTTON).click();
+        new WebDriverWait(super.driver, 30).until(ExpectedConditions.elementToBeClickable(PASSWORD_INPUT)).sendKeys(password);
+        super.driver.findElement(LOGIN_SECOND_BUTTON).click();
     }
 }

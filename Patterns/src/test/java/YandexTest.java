@@ -1,14 +1,12 @@
+import drivers.WebDriverManager;
 import org.junit.jupiter.api.*;
 
-import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import pages.MailPage;
 import pages.StartPage;
 import pages.YandexPage;
 
 public class YandexTest {
-    private static WebDriver driver;
-
     private StartPage startPage;
     private LoginPage loginPage;
     private MailPage mailPage;
@@ -16,14 +14,12 @@ public class YandexTest {
 
     @BeforeEach
     public void setUp() {
-        driver = WebDriverManager.getInstance();
-        driver.manage().window().maximize();
-        driver.get("https://mail.yandex.com/");
+        WebDriverManager.getInstance().getDriver();
     }
 
     @Test
     public void loginTest() {
-        startPage = new StartPage(driver);
+        startPage = new StartPage();
 
         loginPage = startPage.enterButtonClick();
 
@@ -35,7 +31,7 @@ public class YandexTest {
 
     @Test
     public void logoutTest() {
-        startPage = new StartPage(driver);
+        startPage = new StartPage();
 
         loginPage = startPage.enterButtonClick();
 
@@ -48,7 +44,6 @@ public class YandexTest {
 
     @AfterEach
     public void closeUp() {
-        driver.quit();
-        WebDriverManager.delDriver();
+        WebDriverManager.getInstance().delDriver();
     }
 }
