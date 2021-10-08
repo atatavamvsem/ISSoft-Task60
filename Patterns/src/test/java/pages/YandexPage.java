@@ -9,7 +9,6 @@ public class YandexPage extends BasePage {
     private static WebElement newLoginItem;
 
     public YandexPage() {
-        super();
         PageFactory.initElements(super.driver, this);
     }
 

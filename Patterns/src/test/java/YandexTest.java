@@ -12,11 +12,6 @@ public class YandexTest {
     private MailPage mailPage;
     private YandexPage yandexPage;
 
-    @BeforeEach
-    public void setUp() {
-        WebDriverManager.getInstance().getDriver();
-    }
-
     @Test
     public void loginTest() {
         startPage = new StartPage();

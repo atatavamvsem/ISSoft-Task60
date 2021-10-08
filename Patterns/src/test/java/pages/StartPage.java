@@ -9,7 +9,6 @@ public class StartPage extends BasePage {
     private static WebElement enterButton;
 
     public StartPage() {
-        super();
         super.driver.get("https://mail.yandex.com/");
         PageFactory.initElements(super.driver, this);
     }

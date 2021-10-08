@@ -20,11 +20,10 @@ public class LoginPage extends BasePage {
     private static WebElement loginSecondButton;
 
     public LoginPage() {
-        super();
         PageFactory.initElements(super.driver, this);
     }
 
-    public MailPage loginUser(String login, String password){
+    public MailPage loginUser(String login, String password) {
         loginInput.sendKeys(login);
         loginButton.click();
 

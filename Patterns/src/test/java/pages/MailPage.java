@@ -17,7 +17,6 @@ public class MailPage extends BasePage {
     private static WebElement logoutButton;
 
     public MailPage() {
-        super();
         PageFactory.initElements(super.driver, this);
     }
 
