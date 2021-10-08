@@ -12,7 +12,6 @@ public class MailPage extends BasePage {
     private static final By LOGOUT_BUTTON = By.xpath("//a[contains(@class,'b-header__link_exit')]");
 
     public MailPage() {
-        super();
     }
 
     public YandexPage logoutUser() {
@@ -22,7 +21,7 @@ public class MailPage extends BasePage {
         return new YandexPage();
     }
 
-    public String getAccountName(){
+    public String getAccountName() {
         return getTextElement(USER_ACCOUNT);
     }
 }

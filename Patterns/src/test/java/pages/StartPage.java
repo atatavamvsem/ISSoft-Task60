@@ -6,7 +6,6 @@ public class StartPage extends BasePage {
     private static final By ENTER_BUTTON = By.xpath("//a[contains(@class,'HeadBanner-Button-Enter')]");
 
     public StartPage() {
-        super();
         super.driver.get("https://mail.yandex.com/");
     }
 

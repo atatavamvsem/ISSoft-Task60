@@ -3,23 +3,24 @@ package drivers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Objects;
+
 public class WebDriverManager {
     private static WebDriverManager instance;
-    private static WebDriver driver;
+    private WebDriver driver;
 
     private WebDriverManager() {
-
     }
 
     public static WebDriverManager getInstance() {
-        if (instance == null) {
+        if (Objects.isNull(instance)) {
             instance = new WebDriverManager();
         }
         return instance;
     }
 
-    public static WebDriver getDriver() {
-        if (driver == null) {
+    public WebDriver getDriver() {
+        if (Objects.isNull(driver)) {
             driver = new ChromeDriver();
         }
         driver.manage().window().maximize();
@@ -27,7 +28,7 @@ public class WebDriverManager {
         return driver;
     }
 
-    public static void delDriver() {
+    public void delDriver() {
         driver.quit();
         driver = null;
     }
