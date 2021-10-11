@@ -27,7 +27,7 @@ public class LoginPage extends BasePage {
         loginInput.sendKeys(login);
         loginButton.click();
 
-        new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(passwordInput)).sendKeys(password);
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(passwordInput)).sendKeys(password);
         loginSecondButton.click();
 
         return new MailPage();
