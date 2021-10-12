@@ -1,12 +1,10 @@
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import org.junit.jupiter.api.*;
 
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import pages.LoginPage;
 import pages.MailPage;
 import pages.StartPage;
@@ -21,10 +19,11 @@ public class YandexTest {
     private YandexPage yandexPage;
 
 
-    @DisplayName("Human-readable test name")
-    @Story("Login test")
-    @Description("Some detailed test description")
     @Test
+    @DisplayName("Yandex User login test")
+    @Story("Login test")
+    @Description("Correct login")
+    @TmsLink("test-1")
     public void loginTest() {
         startPage = new StartPage();
 
@@ -37,9 +36,10 @@ public class YandexTest {
     }
 
     @Test
+    @DisplayName("Yandex User logout test")
     @Story("Logout test")
-    @DisplayName("Human-readable test name")
-    @Description("Some detailed test description")
+    @Description("Correct logout")
+    @TmsLink("test-2")
     public void logoutTest() {
         startPage = new StartPage();
 

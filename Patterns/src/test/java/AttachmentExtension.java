@@ -16,7 +16,6 @@ public class AttachmentExtension implements TestWatcher {
         WebDriver driver = WebDriverManager.getInstance().getDriver();
         addScreenshot(driver);
         addBrowserInfo(driver);
-        setTestId();
         WebDriverManager.getInstance().delDriver();
     }
 
@@ -46,9 +45,5 @@ public class AttachmentExtension implements TestWatcher {
     @Override
     public void testAborted(ExtensionContext context, Throwable cause) {
         WebDriverManager.getInstance().delDriver();
-    }
-
-    public void setTestId(){
-        Allure.addAttachment("ID", "5");
     }
 }
