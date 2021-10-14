@@ -1,8 +1,11 @@
 package drivers;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Objects;
 
 public class WebDriverManager {
@@ -21,7 +24,11 @@ public class WebDriverManager {
 
     public WebDriver getDriver() {
         if (Objects.isNull(driver)) {
-            driver = new ChromeDriver();
+            try {
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.firefox());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
         driver.manage().window().maximize();
         return driver;
